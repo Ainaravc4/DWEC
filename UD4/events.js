@@ -1,4 +1,4 @@
-const btn = document.querySelector('button');
+/*const btn = document.querySelector('button');
 
 function random(number) {
   return Math.floor(Math.random() * (number+1));
@@ -7,7 +7,7 @@ function random(number) {
 btn.onclick = function() {
   const rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
   document.body.style.backgroundColor = rndCol;
-}
+}*/
 
 /**function bgChange() {
   var rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
@@ -18,9 +18,9 @@ btn.onclick=bgChange; bgcance es una funcion pero se pone parentesis por que sol
 
 
 //esta funcion se esta llamando desde html
-function miFuncion(){
+/*function miFuncion(){
     alert("Funciona");
 }
 
 myElement.addEventListener('click', functionA);
-myElement.addEventListener('click', functionB);
+myElement.addEventListener('click', functionB);*/

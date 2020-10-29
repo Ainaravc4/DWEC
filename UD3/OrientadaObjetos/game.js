@@ -1,100 +1,145 @@
 
+class Jugador{
+  constructor(nombre){
+      this.nombre=nombre;
+      this.result='';
+
+  }
+  ganador(){
+    this.ganar++;
+    
+    document.write("<br>"+this.nombre+" ha ganado con "+this.result)
+  }
+  perdedor(){
+    this.perder++;
+    document.write("<br>"+this.nombre+" ha perdido  con "+this.result)
+  }
+  empate(){
+    document.write("<br>"+this.nombre+" ha EMPATADO  con "+this.result);
+  }
+
+  tirada(){
+    var sacar = Math.floor( Math.random() * 3+1);
+    switch(sacar){
+      case 1: this.result='Piedra';break;
+      case 2: this.result='Papel';break;
+      case 3: this.result='Tijera';
+  }
+    return this.result;
+
+  }
+}
+
+
 class roshambo{
-  constructor(){
-    this.opcionUsuario=0;
-    this.opcionMaquina=1;
+  constructor(u,m){
+    this.usuario=u;
+    this.maquina=m;
     
 
   }
 
-  tiradaUsuario(opcionUsuario){
-    return opcionUsuario;
+  validar(){
+    let veces=1;
+    while(veces <=3){
+        document.write("<br><h1>tirada "+veces+"</h1>")
+        let turnoUsuario=this.usuario.tirada();
+        let turnoMaquina=this.maquina.tirada();
+    
+    
+        veces++;
+        if(turnoUsuario == 'Piedra')
+        {
+        if(turnoMaquina =='Piedra')
+        {
+          this.usuario.empate();
+          this.maquina.empate();
+        }
+
+        else if(turnoMaquina == 'Tijera')
+        {
+          this.maquina.ganador();
+          this.usuario.perdedor();
+        }
+
+        else if(turnoMaquina == 'Papel')
+        {
+          this.usuario.ganador();
+          this.maquina.perdedor();
+          
+        }
+
+        }
 
 
-  }
-  tiradaMaquina(){
-    var sacar = Math.floor( Math.random() * 3 );
-    return sacar;
+        else if(turnoUsuario == 'Papel')
+        {
+        if(turnoMaquina =='Piedra')
+        {
+          this.usuario.ganador();
+          this.maquina.perdedor();
+          
+        }
 
-  }
+        else if(turnoMaquina == 'Papel')
+        {
+          this.usuario.empate();
+          this.maquina.empate();
+        }
 
- }
+        else if(turnoMaquina == 'Tijera') 
+        {
+          this.maquina.ganador();
+          this.usuario.perdedor();
+          
+        }
+
+        }
+
+
+
+        else if(turnoUsuario == 'Tijera')
+        {
+        if(turnoMaquina == 'Piedra')
+          {
+            this.maquina.ganador();
+            this.usuario.perdedor();
+            
+          }
+          
+          
+          else if(turnoMaquina == 'Papel')
+          {
+            this.usuario.ganador();
+            this.maquina.perdedor();
+            
+          }
+
+          else if(turnoMaquina == 'Tijera')
+          { 
+            this.usuario.empate();
+            this.maquina.empate();
+          }
+
+        }
+
+      }
+    }
+
+    }
 
 
  //COMPROBACION
- var r=new roshambo();
- var sacaUsuario=r.tiradaUsuario(2);
- var sacaMaquina=r.tiradaMaquina();
 
 
 
+usuario=new Jugador("Ainara");
+maquina=new Jugador("Profesor");
+var r=new roshambo(usuario,maquina);
+r.validar();
+/*continuar='s';
+do {
+    r.validar();
 
-if(sacaUsuario == 0)
-{
-  alert("Elegiste Piedra!");
-  if(sacaMaquina == 0)
-  {
-  	alert("Empate! Tu oponente ha sacado Piedra");
-  }
-  
-  else if(sacaMaquina == 2)
-  {
-    alert("Perdiste! Tu oponente ha sacado Papel");
-  }
-  
-  else if(sacaMaquina == 3)
-  {
-    alert("Ganaste! Tu oponente ha sacado Tijera");
-  }
-
-}
-  
-  
-else if(sacaUsuario == 1)
-{
-  alert("Elegiste Papel!");
-  if(sacaMaquina == 0)
-  {
-    alert("Ganaste! Tu oponente ha sacado Piedra");
-  }
-  
-  else if(sacaMaquina == 1)
-  {
-    alert("Empate! Tu oponente ha sacado Papel");
-  }
-  
-  else if(sacaMaquina == 2) 
-  {
-    alert("Perdiste! Tu oponente ha sacado Tijera");
-  }
-  
-}
-
-
-
-else if(sacaUsuario == 2)
-{
-  alert("Elegiste tijera!");
-	if(sacaMaquina == 0)
-    {
-      alert("Perdiste! Tu oponente ha sacado Piedra");
-    }
-    
-    
-    else if(sacaMaquina == 1)
-    {
-      alert("Ganaste!Tu oponente ha sacado Papel");	
-    }
-
-    else if(sacaMaquina == 2)
-    { 
-      alert("Empate! Tu oponente ha sacado Tijera");
-    }
-
-}
-
-else
-
-{
-	alert("Debes elegir 0,1 ó 2!");
-}
+  continuar=window.prompt("¿QUIERES JUGAR DE NUEVO?",'s').toUpperCase();
+} while (continuar==='s');*/
