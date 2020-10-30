@@ -36,6 +36,9 @@ class BookList{
     get librosSinLeer(){
         return this.myBooks.filter((libro)=>!libro.read).length;
     }
+    get total(){
+        return this.myBooks.length;
+    }
 
 }
 
@@ -55,36 +58,55 @@ let lista= new BookList();
 
 
 function main(){
-    cargarForm();
     crearTabla();
+    document.getElementById("subir").addEventListener("click",cargarForm); 
+    document.getElementById("subir").addEventListener("click",crearTabla); 
 }
 
 window.addEventListener("load",main);
-document.getElementById("subir").addEventListener("click",crearTabla);  
-document.getElementById("subir").addEventListener("click",cargarForm);  
+ 
+
+
 
 function cargarForm(){
     let titulo=document.getElementById("titulo").value;
     let genero=document.getElementById("genero").value;
     let autor=document.getElementById("autor").value;
-    if(titulo==""||genero==""||autor==""){
-        alert("Todos los campos deben ser rellenados");
-    }else{
-        lista.add(new Book(titulo,genero,autor));
-    }
-    titulo=="";
-    genero=="";
-    autor=="";
+    
+    document.getElementById("titulo").value="";
+    document.getElementById("genero").value="";
+    document.getElementById("autor").value="";
+    lista.add(new Book(titulo,genero,autor));
+
+    document.getElementById("noLeidos").innerHTML="Nº Libros sin leer:"+lista.librosSinLeer;
+
+    document.getElementById("tabla").addEventListener("click",()=>{
+        lista.finishCurrentBook();
+        document.getElementById("leidos").innerHTML=" Nº Libros leidos:"+lista.librosLeidos;
+        document.getElementById("noLeidos").innerHTML="Nº Libros sin leer:"+lista.librosSinLeer;
+        document.getElementById("total").innerHTML="Total de Libros:"+lista.total;
+        crearTabla();
+       
+    })
+
 
 }
 
 function crearTabla(){
+    options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     let table="";
+
     table+="<table id='tablaLibros' style='width:100%' border='solid'>";
     table+="<thead><th>Titulo</th><th>Genero</th><th>Autor</th><th>Leido</th><th>Fecha</th></thead>";
     for(libro of lista.myBooks){
-        table+="<tr><td>"+libro.title+"</td><td>"+libro.genre+"</td><td>"+libro.author+"</td>";
+        if (!libro.read)
+            table+="<tr><td>"+libro.title+"</td><td>"+libro.genre+"</td><td>"+libro.author+"</td><td>-</td><td>-</td>";
+        else{
+            table+="<tr><td>"+libro.title+"</td><td>"+libro.genre+"</td><td>"+libro.author+"</td><td>Si</td><td>"+libro.readDate.toLocaleDateString('en-EN', options)+"</td>";
+            }
+        
     }
+    
     
     document.getElementById("tabla").innerHTML=table;
 }
