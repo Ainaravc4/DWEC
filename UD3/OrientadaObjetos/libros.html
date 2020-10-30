@@ -4,29 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="bookList.js"></script>
+    <style>
+        
+    </style>
 </head>
-<body>
-    <form id="form">
+
+<fieldset style="width: 30%;">
+
         <p>
-            <label id="nombre">Titulo</label>
-            <input type="text" name="titulo"/>
+            <label for="titulo">Titulo</label>
+            <input id="titulo" type="text" name="titulo"/>
             
         </p>
         <p>
-            <label id="genero">Genero</label>
-            <input type="password" name="genero"/>
+            <label for="genero">Genero</label>
+            <input id="genero" type="text" name="genero"/>
             
         </p>
         <p>
-            <label id="autor">Autor</label>
-            <input type="password" name="autor"/>
+            <label for="autor">Autor</label>
+            <input id="autor" type="text" name="autor"/>
             
         </p>
-        <input type="submit" name="Subir"/>
-    </form>
-<div id="tabla">
- 
-</div>
+        <button id="subir">Subir Libro</button>
+        <button id="actualizar">ver tabla</button>
+
+</fieldset>
+<div id="tabla"></div>
+<script src="bookList.js"></script>
 </body>
 </html>

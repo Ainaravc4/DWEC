@@ -3,6 +3,7 @@ class BookList{
         this.myBooks=[];
         this.currentBook=0;
         this.numNoLeido=0;
+        this.ultimo
     }
 
     add(book){
@@ -14,6 +15,8 @@ class BookList{
             this.currentBook++;
         this.myBooks[this.currentBook-1].read=true;
         this.myBooks[this.currentBook-1].readDate= new Date();
+        this.ultimo=this.currentBook;
+        return this.ultimo;
     }
 
     siguienteLibro(){
@@ -47,35 +50,42 @@ class Book{
     }
 }
 
-var tabla="<table border='1'>";
-tabla += "<tr>";
-tabla+= "<th> Titulo </th><th> Genero </th> <th> Autor </th>";
-for (i=1;i<=6;i++)
+let lista= new BookList();
 
 
-tabla+="</tr>";
 
-tabla+="</table>"
-document.write(tabla);
+function main(){
+    cargarForm();
+    crearTabla();
+}
 
-var titulo= document.getElementById("titulo");
-var genero= document.getElementById("genero");
-var autor= document.getElementById("autor");
+window.addEventListener("load",main);
+document.getElementById("subir").addEventListener("click",crearTabla);  
+document.getElementById("subir").addEventListener("click",cargarForm);  
 
-var b= new Book("yo","el","tu");
-var a= new Book("titulo","genero","autor");
-var c= new Book("a","c","r");
+function cargarForm(){
+    let titulo=document.getElementById("titulo").value;
+    let genero=document.getElementById("genero").value;
+    let autor=document.getElementById("autor").value;
+    if(titulo==""||genero==""||autor==""){
+        alert("Todos los campos deben ser rellenados");
+    }else{
+        lista.add(new Book(titulo,genero,autor));
+    }
+    titulo=="";
+    genero=="";
+    autor=="";
 
-var lista= new BookList();
-lista.add(a);
-lista.add(b);
-lista.add(c);
+}
 
-console.log("SIN Leer "+lista.librosSinLeer);
-console.log("Leidos "+lista.librosLeidos);
+function crearTabla(){
+    let table="";
+    table+="<table id='tablaLibros' style='width:100%' border='solid'>";
+    table+="<thead><th>Titulo</th><th>Genero</th><th>Autor</th><th>Leido</th><th>Fecha</th></thead>";
+    for(libro of lista.myBooks){
+        table+="<tr><td>"+libro.title+"</td><td>"+libro.genre+"</td><td>"+libro.author+"</td>";
+    }
+    
+    document.getElementById("tabla").innerHTML=table;
+}
 
-lista.finishCurrentBook();
-lista.finishCurrentBook();
-lista.finishCurrentBook();
-console.log("SIN Leer "+lista.librosSinLeer);
-console.log("Leidos "+lista.librosLeidos);

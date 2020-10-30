@@ -1,15 +1,17 @@
 //1
-/*var btn = document.querySelector('button');
+//var btn = document.querySelector('button');
+/*document.getElementById("btn").innerHTML += "<br><button id='boton'>Pulsa</button>";
 function clicar() {
     alert("Se ha producido un evento");
   }    
-  btn.onclick=clicar;*/
+  document.getElementById("boton").addEventListener("click", clicar);*/
 
 //2
 /*function mover(event){
-  console.log("COOR X= "+event.offsetX+" COOR Y= "+event.offsetY);
-
-}*/
+    console.log("COOR X= "+event.offsetX+" COOR Y= "+event.offsetY);
+}
+document.getElementById("pantalla").innerHTML += "<p>ESTA ES LA PANTALLA</p>";
+document.getElementById("pantalla").addEventListener("mousemove", mover);*/
 
 /*window.onmousemove = function (){
   x = window.event.clientX;
@@ -31,12 +33,14 @@ tecla Ctrl y azul si se pulsa Shift. En otro caso no deberá pintarse nada*/
   for(let i = 0; i <= 19; i++){
       document.write("<tr height='20'>");
       for(let j = 0; j <= 19; j++){
-          document.write("<td id='borrar' onmousemove='color(event)' height='20' width='20'></td>");
+          document.write("<td  onmousemove='color(event)' height='20' width='20'></td>");
       }
       document.write("</tr>");
   }    
   document.write("</table>");
-  document.write("<button onclick='borrarColor()'>Borrar</button>");
+  document.write("<button id='boton'>ELIMINAR</button>");
+  document.getElementById("boton").addEventListener("click",borrarColor);
+  
 }
 
 function color(event) {
@@ -52,36 +56,46 @@ function color(event) {
 }
 
 function borrarColor(){
-  document.write("<table >");
-  for(let i = 0; i <= 19; i++){
-      document.write("<tr height='20'>");
-      for(let j = 0; j <= 19; j++){
-          document.write("<td id='borrar' onmousemove='color(event)' height='20' width='20'></td>");
-      }
-      document.write("</tr>");
-  }    
-  document.write("</table>");
+  var tds=document.querySelectorAll("td");
+  for(td of tds)
+    td.style.backgroundColor = "white";
 }
+window.addEventListener("load", main);*/
 
-main();*/
 //9
-var arrastrando=false;
-var x,y;
 
-function imagePulsada(){
+/*var imgs=document.querySelectorAll("img");
+var imagenActual=null;
+/**@type{Boolean} */
+
+/*var arrastrando=false;
+
+imgs.forEach(imagen=>{
+  imagen.addEventListener("click",imagePulsada)
+});
+  window.addEventListener('mousemove',moverImagen);
+
+function imagePulsada(e){
   arrastrando=!arrastrando;
-   
+   imagenActual=e.currentTarget;
 }
-
-//document.getElementById("imagen").addEventListener('click',imagePulsada);
 
 function moverImagen(e) {
   if(arrastrando){
-    console.log("moviendo")
-      var img = document.getElementById('img');
-      img.style.cssText="position: absolute; top: "+e.y+"; left: "+e.x+";"
-}   
-  
-}
+    
+    imagenActual.style.marginLeft = (e.x-20)+"px";
+    imagenActual.style.marginTop = (e.y-20)+"px";
+    
+  }   
+
+}*/
+
+ 
+
+
+ 
+
+
+
 
 

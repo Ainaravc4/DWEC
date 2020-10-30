@@ -1,3 +1,6 @@
+
+//FORMA 1 DE HACERLO
+
 /*const btn = document.querySelector('button');
 
 function random(number) {
@@ -9,12 +12,19 @@ btn.onclick = function() {
   document.body.style.backgroundColor = rndCol;
 }*/
 
-/**function bgChange() {
+
+//FORMA 2 DE HACERLO
+
+/*function random(number) {
+  return Math.floor(Math.random() * (number+1));
+}
+
+function bgChange() {
   var rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
   document.body.style.backgroundColor = rndCol;
 }    
-btn.onclick=bgChange; bgcance es una funcion pero se pone parentesis por que solo esta haciendo una referencia indicandole que se ejecute solo cuando se clique.
-*/
+document.getElementById("btnColor").innerHTML+="<button id ='btn'>Cambiar Color</button>";
+document.getElementById("btn").addEventListener('click', bgChange);*/
 
 
 //esta funcion se esta llamando desde html
