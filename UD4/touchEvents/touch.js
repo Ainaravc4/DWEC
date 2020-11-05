@@ -1,25 +1,52 @@
-function startup() {
-    var el = document.getElementsByTagName("canvas")[0];
+function inicio() {
+    var el = document.getElementById("canvas");
     el.addEventListener("touchstart", handleStart, false);
     el.addEventListener("touchend", handleEnd, false);
-    //el.addEventListener("touchcancel", handleCancel, false);
-    //el.addEventListener("touchleave", handleLeave, false);
+ //   el.addEventListener("touchcancel", handleCancel, false);
     el.addEventListener("touchmove", handleMove, false);
-    el.addEventListener("click",click);
+    el.addEventListener("click", click);
+
+    if (window.DeviceOrientationEvent) {
+        window.addEventListener('deviceorientation',orientacion);
+    }
+    if (window.DeviceOrientationEvent) {
+        window.addEventListener('deviceorientation',orientacion2);
+    }
+    if (window.DeviceOrientationEvent) {
+        window.addEventListener('deviceorientation',orientacion3);
+    }
+
   }
-  window.onload=startup;
+
+  window.onload = inicio;
+  
   function handleStart(evt) {
     evt.preventDefault();
-    document.getElementById("log").innerHTML="Touchstart"+evt.pageX+""+evt.pageY;
-}
-function handleEnd(evt) {
+    document.getElementById("log").innerHTML = "Touchstart " + evt.touches[0].pageX + " "+evt.touches[0].pageY;
+  }
+  function handleEnd(evt) {
     evt.preventDefault();
-    document.getElementById("log").innerHTML="Touchend"+evt.pageX+""+evt.pageY;
-}
-function handleMove(evt) {
+    document.getElementById("log").innerHTML = "Touchend " + evt.touches[0].pageX + " "+evt.touches[0].pageY;
+  }
+  function handleMove(evt) {
     evt.preventDefault();
-    document.getElementById("log").innerHTML="Touchmove"+evt.pageX+""+evt.pageY;
-}
-function click(){
-    alert('click');
-}
+    document.getElementById("log").innerHTML = "Touchmove " + evt.touches[0].pageX + " "+evt.touches[0].pageY;
+  }
+
+  function click()
+  {
+      alert("click");
+  }
+
+  function orientacion(e)
+  {
+    document.getElementById("log").innerHTML = e.alpha;
+  }
+  function orientacion2(e)
+  {
+    document.getElementById("log").innerHTML = e.gamma;
+  }
+  function orientacion3(e)
+  {
+    document.getElementById("log").innerHTML = e.beta;
+  }
