@@ -1,0 +1,6 @@
+{"listaNotas":[
+    {"titulo":"Hoy","texto":"hacer deberes"},
+    {"titulo":"Mañana","texto":"hacer examen"},
+    {"titulo":"miercoles","texto":"fin"},
+    {"titulo":"jueves","texto":"terminar"}
+]}
